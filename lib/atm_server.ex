@@ -5,6 +5,14 @@ defmodule ATMServer do
     {:ok, items}
   end
 
+  def deposit(_pid, _item) do
+    :gen_server.call( _pid, {:deposit, _item } )
+  end
+
+  def withdraw(_pid, _item) do
+    :gen_server.call( _pid, {:withdraw, _item } )
+  end
+
   def start_link(items) do
     {:ok, item } = :gen_server.start_link( ATMServer, items, [] )
     item
