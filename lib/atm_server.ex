@@ -5,12 +5,10 @@ defmodule ATMServer do
     {:ok, items}
   end
 
-  def start_link do
-    {:ok, item } = :gen_server.start_link( ATMServer, [], [] )
+  def start_link(items) do
+    {:ok, item } = :gen_server.start_link( ATMServer, items, [] )
     item
   end
-
-  # A part of GenServer Behaviour
 
   def handle_call({:deposit, item}, _from, items ) do
    {:reply, :ok, [item|items]}
