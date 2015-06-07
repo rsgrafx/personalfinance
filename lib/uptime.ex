@@ -14,9 +14,9 @@ defmodule Uptime do
   end
 
   def filter(input, regx_match) do
-    IO.puts input
-    data = String.split(input, "\n")
-    Enum.filter(data, fn(line) -> Regex.match?(regx_match, line) end)
+
+    String.split(input, "\n")
+      |> Enum.filter( fn(line) -> Regex.match?(regx_match, line) end)
   end
 
   @doc """
@@ -31,6 +31,15 @@ defmodule Uptime do
 
   def process_pipe(regx_match, path_string) do
     file_path(path_string) |> return_read |> filter(regx_match)
+  end
+
+  def process_id(lines) do
+     IO.puts(lines)
+     Enum.map(lines, fn(line) ->
+        stripped = String.strip( line )
+        columns = Regex.split(~r/ /, stripped, trim: true)
+        Enum.at( columns, 0 ) 
+     end)
   end
 
 end

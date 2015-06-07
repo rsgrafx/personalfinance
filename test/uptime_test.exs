@@ -16,8 +16,8 @@ defmodule UptimeTest do
   end
 
   test "ps_ax outputs processes" do
-    input_file = Path.absname("test/fixture/ps_output.txt")
-    {:ok, data } = File.read(input_file)
+    # input_file = Path.absname("test/fixture/ps_output.txt")
+    # {:ok, data } = File.read(input_file)
   end
 
   test "grep (lines, redis-server) returns lines and processes" do
@@ -41,6 +41,8 @@ defmodule UptimeTest do
   end
 
   test "awk(input, 1) splits on whitespace" do
+    assert ( Uptime.process_pipe(~r/redis/, "test/fixture/ps_output.txt")
+          |> Uptime.process_id ) == ["1003"]
   end
 
   test "command works" do 
