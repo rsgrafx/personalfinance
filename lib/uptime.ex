@@ -4,6 +4,11 @@ defmodule Uptime do
     File.read(file)
   end
 
+  def return_read(file) do
+    {:ok, data} = File.read(file)
+    data
+  end
+
   def file_path(_path) do
     Path.absname(_path)
   end
@@ -22,6 +27,10 @@ defmodule Uptime do
     path = file_path( path_string )
     {:ok, input } = read_in( path )
     filter( input, regx_match )
+  end
+
+  def process_pipe(regx_match, path_string) do
+    file_path(path_string) |> return_read |> filter(regx_match)
   end
 
 end
