@@ -18,13 +18,9 @@ defmodule Uptime do
   Entry point to module
   """
   def process(regx_match, path_string) do
+    IO.puts(path_string)
     path = file_path( path_string )
-    # IO.inspect(path)
-
-    {:ok, input} = read_in( path )
-
-    IO.inspect(input)
-
+    {:ok, input } = read_in( path )
     filter( input, regx_match )
   end
 
