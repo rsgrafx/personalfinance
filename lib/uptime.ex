@@ -37,8 +37,7 @@ defmodule Uptime do
      IO.puts(lines)
      Enum.map(lines, fn(line) ->
         stripped = String.strip( line )
-        columns = Regex.split(~r/ /, stripped, trim: true)
-        Enum.at( columns, 0 ) 
+        Regex.split(~r/ /, stripped, trim: true) |> Enum.at(0)
      end)
   end
 
