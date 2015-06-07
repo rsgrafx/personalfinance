@@ -32,6 +32,10 @@ defmodule UptimeTest do
     assert Uptime.filter(lines, ~r/redis/ ) == output
   end
 
+  test "read in file" do 
+    assert Uptime.process(~r/redis/, "test/fixture/ps_output.txt") == [" 1003 s000  S+     0:00.59 redis-server"]
+  end
+
   test "awk(input, 1) splits on whitespace" do
   end
 
