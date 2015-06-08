@@ -34,7 +34,6 @@ defmodule Uptime do
   end
 
   def process_id(lines) do
-     IO.puts(lines)
      Enum.map(lines, fn(line) ->
         stripped = String.strip( line )
         Regex.split(~r/ /, stripped, trim: true) |> Enum.at(0)
