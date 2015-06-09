@@ -22,10 +22,18 @@ defmodule PurchasesServer do
     :gen_server.call(:purchases, :purchased_items)
   end
 
+  def crash do 
+    :gen_server.case(:purchases, :crash)
+  end
+
   # Gen server api.
 
   def init(purchases) do 
     {:ok, purchases}
+  end
+
+  def handle_cast(:crash, _blank_ ) do 
+    1 = 2
   end
 
   def handle_cast(:clear, purchases) do 
