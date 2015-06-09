@@ -1,21 +1,25 @@
 defmodule PurchasesServerTest do
   use ExUnit.Case
+  use Timex
 
   setup do 
-    # PurchasesServer.clear
+    PurchasesServer.start_link
+    PurchasesServer.clear
   end
 
   test "it should start out empty" do 
-    assert PurchasesServer.items == []
-    assert 1+2 == 10
+    assert PurchasesServer.purchases == []
   end
 
-  test "lets you add items to list" do 
-    date = Date.now
-    PurchasesServer.add [%{:item => "T-Shirt on Amazon", cost: 15.99, :date => Date.local(date)}]
+  test "lets you add items to list" do
+    date_ = Date.local(Date.now)
+
+    # IO.puts IO.inspect(date_)
+    PurchasesServer.add %{ "TShirt" => 15.00, :date => date_ }
+    assert PurchasesServer.purchases == [%{ "TShirt" => 15.00, :date => date_ }]
   end
 
   test "should clear every 7 days" do 
-
   end
+
 end
