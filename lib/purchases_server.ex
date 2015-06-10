@@ -2,8 +2,8 @@ defmodule PurchasesServer do
 
   use GenServer
 
-  def start_link do 
-    :gen_server.start_link({:local, :purchases}, __MODULE__, [], [])
+  def start_link(purchase_data_pid) do 
+    :gen_server.start_link({:local, :purchases}, __MODULE__, purchase_data_pid, [])
   end
 
   def clear do 
@@ -23,32 +23,38 @@ defmodule PurchasesServer do
   end
 
   def crash do 
-    :gen_server.case(:purchases, :crash)
+    :gen_server.cast(:purchases, :crash)
   end
 
   # Gen server api.
 
-  def init(purchases) do 
-    {:ok, purchases}
+  def init( purchase_data_pid ) do 
+    purchases = Core.PurchaseData.get_state( purchase_data_pid )
+    {:ok, { purchases, purchase_data_pid }}
   end
 
   def handle_cast(:crash, _blank_ ) do 
     1 = 2
   end
 
-  def handle_cast(:clear, purchases) do 
-    {:noreply, []}
+  def handle_cast(:clear, { _purchases, purchase_data_pid }) do 
+    {:noreply, {[], purchase_data_pid}}
   end
 
-  def handle_cast({:add,item}, purchases) do 
-    {:noreply , purchases ++ [item]}
+  def handle_cast({:add,item}, {purchases, purchase_data_pid}) do 
+    {:noreply , {purchases ++ [item], purchase_data_pid}}
   end
 
-  def handle_cast({:remove, item}, purchases) do 
-    {:noreply , List.delete(purchases, item) }
+  def handle_cast({:remove, item}, {purchases, purchase_data_pid}) do 
+    {:noreply, {List.delete(purchases, item), purchase_data_pid } }
   end
 
-  def handle_call(:purchased_items, _from, purchases) do 
-    {:reply, purchases, purchases}
+  def handle_call(:purchased_items, _from, { purchases, purchase_data_pid}) do 
+    {:reply, purchases, {purchases, purchase_data_pid}}
   end
+
+  def terminate(_reason, {purchases, purchase_data_pid}) do 
+    Core.PurchaseData.save_state  purchase_data_pid, purchases
+  end 
+
 end
