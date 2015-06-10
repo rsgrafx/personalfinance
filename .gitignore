@@ -4,3 +4,10 @@ erl_crash.dump
 *.ez
 *.idea
 .idea
+*.beam
+ebin/
+.rebar
+.deps
+.eunit
+*.o
+*.plt
