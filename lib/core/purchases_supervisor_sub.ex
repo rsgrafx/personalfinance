@@ -1,12 +1,12 @@
 defmodule Core.PurchasesSupervisorSub do
   use Supervisor
 
-  def start_link(purchase_data_pid) do 
-    :supervisor.start_link( __MODULE__, purchase_data_pid )
+  def start_link( pid ) do 
+    :supervisor.start_link( __MODULE__, pid )
   end
 
-  def init( purchase_data_pid ) do 
-    child_prx = [ worker(PurchasesServer, [purchase_data_pid] ) ]
+  def init( pid ) do 
+    child_prx = [ worker(PurchasesServer, [ pid ] ) ]
     supervise child_prx, strategy: :one_for_one
   end
 end

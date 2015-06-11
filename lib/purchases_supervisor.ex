@@ -10,8 +10,10 @@ defmodule PurchasesSupervisor do
   def start_workers( sup ) do 
     # Start the PurchaseData worker.
     {:ok, purchase_data_pid } = :supervisor.start_child( sup, worker( Core.PurchaseData, []))
+    {:ok, purchase_repo_pid } = :supervisor.start_child( sup, worker( Core.PurchasesRepo, []))
     # Start Sub supervisor
     :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_data_pid ]))
+    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_repo_pid ]))
   end
 
   def init(_) do 
