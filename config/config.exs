@@ -7,7 +7,12 @@ use Mix.Config
 # file won't be loaded nor affect the parent project. For this reason,
 # if you want to provide default values for your application for third-
 # party users, it should be done in your mix.exs file.
-
+  config :banking_db_app, Core.BankingRepo,
+    adapter: Ecto.Adapters.MySQL,
+    database: "personal_banking_app",
+    username: "root",
+    password: ""
+# 
 # Sample configuration:
 #
 #     config :logger, :console,
