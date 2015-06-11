@@ -1,4 +1,4 @@
-defmodule Banking.Mixfile do
+defmodule PersonalBanking.Mixfile do
   use Mix.Project
 
   def project do
@@ -9,10 +9,14 @@ defmodule Banking.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [applications: [:logger,:mariaex, :ecto]]
   end
 
   defp deps do
-    [{:timex, "~> 0.13.4"}]
+    [
+     { :timex, "~> 0.13.4" },
+     { :mariaex, ">= 0.1.0" },
+     { :ecto, github: "elixir-lang/ecto"}
+   ]
   end
 end

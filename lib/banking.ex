@@ -1,4 +1,4 @@
-defmodule Banking do
+defmodule PersonalBanking do
 
   def start do
     await([])
