@@ -8,3 +8,7 @@ defmodule Core.IncomeRepo do
     field :start_date
   end
 end
+
+defmodule Core.IncomeItem do 
+  defstruct [:description, :schedule, :amount, :start_date]
+end
