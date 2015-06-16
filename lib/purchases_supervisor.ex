@@ -14,9 +14,10 @@ defmodule PurchasesSupervisor do
   def start_workers( sup ) do 
     # Start the PurchaseData worker.
     {:ok, purchase_data_pid } = :supervisor.start_child( sup, worker( Core.PurchaseData, []))
+    {:ok, redis_connection_pid } = :supervisor.start_child( sup, worker( Pubsub.Connection, []))
     
     # Start Sub supervisor * can manage more than one pid.
-    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_data_pid ]))
+    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_data_pid, redis_connection_pid ]))
   end
 
   def init(_) do 
