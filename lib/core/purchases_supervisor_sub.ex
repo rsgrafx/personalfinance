@@ -1,4 +1,7 @@
 defmodule Core.PurchasesSupervisorSub do
+  @doc """
+  This supervisor manages the Purchases Supervisor application / process.
+  """
   use Supervisor
 
   def start_link( pid ) do 

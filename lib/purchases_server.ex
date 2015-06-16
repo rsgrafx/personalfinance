@@ -1,4 +1,7 @@
 defmodule PurchasesServer do
+  @doc """
+  As part of the Supervision Tree - this module is managed. by Purchase Sub Supervisor .
+  """
 
   use GenServer
 

@@ -1,4 +1,8 @@
 defmodule PurchasesSupervisor do
+  @doc """
+  Main supervisor in the supervision tree - manages the * Core purchases data
+  * and manages the Purchases Supervisor Sub.
+  """
   use Supervisor
 
   def start_link do 
@@ -10,10 +14,9 @@ defmodule PurchasesSupervisor do
   def start_workers( sup ) do 
     # Start the PurchaseData worker.
     {:ok, purchase_data_pid } = :supervisor.start_child( sup, worker( Core.PurchaseData, []))
-    {:ok, purchase_repo_pid } = :supervisor.start_child( sup, worker( Core.PurchasesRepo, []))
+    
     # Start Sub supervisor
     :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_data_pid ]))
-    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_repo_pid ]))
   end
 
   def init(_) do 
