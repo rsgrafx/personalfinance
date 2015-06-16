@@ -15,7 +15,7 @@ defmodule PurchasesSupervisor do
     # Start the PurchaseData worker.
     {:ok, purchase_data_pid } = :supervisor.start_child( sup, worker( Core.PurchaseData, []))
     
-    # Start Sub supervisor
+    # Start Sub supervisor * can manage more than one pid.
     :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_data_pid ]))
   end
 
