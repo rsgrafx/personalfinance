@@ -8,3 +8,7 @@ defmodule Core.PurchasesRepo do
   end
 
 end
+
+defmodule Core.PurchaseItem do 
+  defstruct [:item_description, :tags, :price]
+end
