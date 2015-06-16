@@ -1,6 +1,6 @@
 use Mix.Config
   config :banking, Core.BankingRepo,
-    adapter: Ecto.Adapters.MySQL,
+    adapter: Ecto.Adapters.Postgres,
     database: "personal_banking_app",
     username: "root",
     password: ""
