@@ -17,7 +17,8 @@ defmodule PersonalBanking.Mixfile do
      {:timex, "~> 0.13.4" },
      {:exredis, github: "artemeff/exredis", tag: "0.1.0"},
      {:postgrex, "~> 0.7.0"},
-     {:ecto, "0.7.1"}
+     {:ecto, "0.7.1"},
+     {:poison, github: "devinus/poison"}
    ]
   end
 end

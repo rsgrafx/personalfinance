@@ -2,6 +2,7 @@
   "ecto": {:hex, :ecto, "0.7.1"},
   "eredis": {:git, "git://github.com/wooga/eredis.git", "471dd471060daa1d98391cb69ae006f8ba79a042", [ref: "471dd"]},
   "exredis": {:git, "git://github.com/artemeff/exredis.git", "321487f1e747225ff86c5d8af7bb7f3b7a7901d6", [tag: "0.1.0"]},
+  "poison": {:git, "git://github.com/devinus/poison.git", "1f1f845f66644e3df125ccd9213f687496c4ad16", []},
   "poolboy": {:hex, :poolboy, "1.4.2"},
   "postgrex": {:hex, :postgrex, "0.7.0"},
   "timex": {:hex, :timex, "0.13.4"}}
