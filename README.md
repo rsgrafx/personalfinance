@@ -11,7 +11,7 @@ In seperate terminal. start Redis
 $> redis-server
 In seperate terminal. start Redis-CLI
 $> redis-cli
-# Example of what it expects from from the redis channel.
+##### Example of what it expects from from the redis channel.
 redis 127.0.0.1:6379> PUBLISH ocr_data '{"description" : "Target store receipt", "tags" : "clothing, household", "amount": 35.32}'
 
 TODO: The goal of this application is to have an easy mechanism for the user to track her spending habits and match with income / debt in order to come up with some basic savings goals.
