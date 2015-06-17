@@ -27,3 +27,6 @@ TODO: The goal of this application is to have an easy mechanism for the user to 
 #####  How can this be done:
     • Once a user had at least two weeks worth of data -  perform calculations that will tally up all purchase data
     • Present them to the user via a web dashboard so she can categorize them in pre-set groups.
+
+#### Why build this when there are tonnes of apps that do this..
+    • Give's me a reason to commit to learning Elixir.. Which is awesome!
