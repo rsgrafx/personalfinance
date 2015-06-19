@@ -2,18 +2,18 @@ defmodule BankingTest do
   use ExUnit.Case
 
   test "bank account starts with a 0 balance" do
-    account = spawn_link( Banking, :start, [] )
+    account = spawn_link( PersonalBanking, :start, [] )
     verify_balance_is 0, account
   end
 
   test "Amound incremented by amount of deposit" do
-    account_pid = spawn_link(Banking, :start, [])
+    account_pid = spawn_link(PersonalBanking, :start, [])
     send account_pid, { :deposit, 200 }
     verify_balance_is( 200, account_pid )
   end
 
   test "Withdrawals -- from balance" do
-    account_pid = spawn_link(Banking, :start, [])
+    account_pid = spawn_link(PersonalBanking, :start, [])
     send account_pid, { :deposit, 120 }
     send account_pid, { :withdrawal, 100 }
     verify_balance_is( 20, account_pid)

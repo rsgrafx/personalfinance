@@ -18,7 +18,9 @@ defmodule PurchasesSupervisor do
     {:ok, postgres_pid} = :supervisor.start_child(sup, worker( Core.BankingRepo, []))
     
     # Start Sub supervisor * can manage more than one pid.
-    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_data_pid, redis_connection_pid, postgres_pid ]))
+    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ purchase_data_pid]))
+    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ redis_connection_pid ]))
+    :supervisor.start_child( sup, worker(Core.PurchasesSupervisorSub, [ postgres_pid ]))
   end
 
   def init(_) do 

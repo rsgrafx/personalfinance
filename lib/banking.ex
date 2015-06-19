@@ -1,5 +1,9 @@
 defmodule PersonalBanking do
 
+  def start_link do 
+    Task.start_link(fn -> await([]) end)
+  end
+
   def start do
     await([])
   end

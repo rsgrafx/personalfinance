@@ -1,5 +1,5 @@
 use Mix.Config
-  config :banking, Core.BankingRepo,
+  config :personal_banking, Core.BankingRepo,
     adapter: Ecto.Adapters.Postgres,
     database: "personal_banking_income",
     username: "orionengleton",

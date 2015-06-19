@@ -1,8 +1,8 @@
 defmodule Core.BankingRepo do
-  use Ecto.Repo, adapter: Ecto.Adapters.Postgres, otp_app: :banking
+  use Ecto.Repo, adapter: Ecto.Adapters.Postgres, otp_app: :personal_banking
 
   def priv do 
-    Application.app_dir(:banking, "priv/repo")
+    Application.app_dir(:personal_banking, "priv/repo")
   end
 end
 

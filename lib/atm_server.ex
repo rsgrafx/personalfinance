@@ -1,4 +1,7 @@
 defmodule ATMServer do
+  @doc """
+  This module only - writes to its own process state.
+  """
   use GenServer
 
   def init(items) do
@@ -14,7 +17,7 @@ defmodule ATMServer do
   end
 
   def start_link(items) do
-    {:ok, item } = :gen_server.start_link( ATMServer, items, [] )
+    {:ok, item } = :gen_server.start_link( __MODULE__, items, [] )
     item
   end
 

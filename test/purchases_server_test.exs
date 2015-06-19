@@ -3,7 +3,8 @@ defmodule PurchasesServerTest do
   use Timex
 
   setup do 
-    PurchasesServer.start_link
+    {:ok, pd_pid } = Core.PurchaseData.start_link
+    PurchasesServer.start_link(pd_pid)
     PurchasesServer.clear
   end
 
