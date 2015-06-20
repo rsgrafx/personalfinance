@@ -30,3 +30,7 @@ TODO: The goal of this application is to have an easy mechanism for the user to 
 
 #### Why build this when there are tonnes of apps that do this..
     • Give's me a reason to commit to learning Elixir.. Which is awesome!
+
+    <!-- https://www.plaid.com/ -->
+    <!-- https://bridge.simplefin.org/simple/ -->
+    <!-- https://github.com/elixir-lang/plug/issues/181 -->
