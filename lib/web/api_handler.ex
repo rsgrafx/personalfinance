@@ -38,6 +38,8 @@ defmodule Web.ApiHandler do
     |> send_file(200, "priv/index.html")
   end
 
+  forward "/api", to: Web.ApiRoutes
+
   def run do
     { :ok, _ } = Plug.Adapters.Cowboy.http Web.ApiHandler, []
   end
