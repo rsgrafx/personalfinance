@@ -21,11 +21,18 @@ defmodule Pubsub.Connection do
     client_sub = Exredis.Sub.start 
     client = Exredis.start_using_connection_string("redis://#{@redis_url}:#{@redis_port}")
     :global.register_name(@name, client)
-    _pid = Kernel.self
+    pid_ = Kernel.self
 
     state = state(client: client, client_sub: client_sub)
-    client_sub |> Exredis.Sub.subscribe @notification_channel, fn(msg) ->
-       Pubsub.MsgPusher.send(msg) end
+    
+    client_sub |> Exredis.Sub.subscribe ["other_data", "ocr_data"], fn(msg) ->
+      case msg do 
+        {:message, "other_data", _, _ } -> Web.Pusher.send(msg)
+        {:message, "ocr_data" , _ , _ } -> Pubsub.MsgPusher.send(msg)
+        _ ->
+      end
+     end
+
     {:ok, state}
   end
 
