@@ -11,7 +11,11 @@ defmodule PersonalBanking.Mixfile do
   end
 
   def application do
-    [applications: [:logger,:postgrex, :ecto, :cowboy], mod: {PersonalBanking, []} ]
+    [applications: [:logger,
+                    :postgrex, 
+                    :ecto,
+                    :plug,
+                    :cowboy ], mod: {PersonalBanking, []} ]
   end
 
   defp deps do
