@@ -8,7 +8,9 @@ defmodule PersonalBanking do
     children = [
     # Define workers and child supervisors to be supervised
     # worker(PersonalBanking.Worker, [arg1, arg2, arg3])
-      worker(Web.RealtimeServer, [])
+      worker(Web.RealtimeServer, []),
+      worker(Web.ApiHandler, [], function: :run)
+
     ]
     opts = [strategy: :one_for_one, name: PersonalBanking.Supervisor]
     Supervisor.start_link(children, opts)
@@ -16,11 +18,8 @@ defmodule PersonalBanking do
     Task.start_link(fn -> await([]) end)
   end
 
-  # def start do
-  #   await([])
-  # end
-
   def await(events) do
+
     receive do
      { :check_balance, pid } -> divulge_balance(pid, events)
      { :deposit, amount } -> events = deposit(amount, events)
