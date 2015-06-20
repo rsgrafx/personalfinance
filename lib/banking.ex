@@ -1,12 +1,24 @@
 defmodule PersonalBanking do
+  use Application
 
-  def start_link do 
+  def start(_type, _args) do
+
+    import Supervisor.Spec, warn: false
+    Web.Dispatch.start
+    children = [
+    # Define workers and child supervisors to be supervised
+    # worker(PersonalBanking.Worker, [arg1, arg2, arg3])
+      worker(Web.RealtimeServer, [])
+    ]
+    opts = [strategy: :one_for_one, name: PersonalBanking.Supervisor]
+    Supervisor.start_link(children, opts)
+    PurchasesSupervisor.start_link
     Task.start_link(fn -> await([]) end)
   end
 
-  def start do
-    await([])
-  end
+  # def start do
+  #   await([])
+  # end
 
   def await(events) do
     receive do
