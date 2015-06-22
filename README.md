@@ -34,3 +34,5 @@ TODO: The goal of this application is to have an easy mechanism for the user to 
     <!-- https://www.plaid.com/ -->
     <!-- https://bridge.simplefin.org/simple/ -->
     <!-- https://github.com/elixir-lang/plug/issues/181 -->
+    <!-- http://www.jarredtrost.com/2015/05/30/getting-started-with-elixir-plug-routes/ -->
+    <!-- http://blog.plataformatec.com.br/2015/06/adding-mysql-support-to-ecto/ -->

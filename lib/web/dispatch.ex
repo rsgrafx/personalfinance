@@ -10,6 +10,7 @@ defmodule Web.Dispatch do
         [
           {"/websocket", Web.Realtime, []},
           {"/second_socket", Web.UploadUpdates, []},
+          {:_, Plug.Adapters.Cowboy.Handler, { Web.AltApiRoutes, [] }},
           {"/[...]", :cowboy_static, { :priv_dir, :personal_banking, "", [{:mimetypes, :cow_mimetypes, :all}]}}
         ]
   end
